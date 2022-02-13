@@ -10,3 +10,14 @@ The Genome Assembly group members for Team 2 are:
 * Howard Page
 * Harini Narasimhan
 
+## Installation
+
+```
+conda install -c bioconda quast
+```
+QUAST v5.0.2
+
+## De Novo Assembly quality assessmnet with QUAST
+```
+quast.py <example.contigs.fasta> -o /path/to/output/dir
+```
