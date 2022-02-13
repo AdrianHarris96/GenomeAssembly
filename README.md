@@ -1,4 +1,5 @@
 # Team2-GenomeAssembly
+
 The Genome Assembly group members for Team 2 are:
 * Adrian Harris
 * Ashlesha Gogate
@@ -8,3 +9,4 @@ The Genome Assembly group members for Team 2 are:
 * Wei-An Chen
 * Howard Page
 * Harini Narasimhan
+
