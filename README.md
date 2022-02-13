@@ -13,6 +13,10 @@ The Genome Assembly group members for Team 2 are:
 ## Installation
 
 ```
+conda install -c bioconda fastqc
+conda install -c bioconda trimmomatic
+```
+```
 conda install -c bioconda quast
 ```
 QUAST v5.0.2
