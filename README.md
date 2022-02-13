@@ -15,6 +15,7 @@ The Genome Assembly group members for Team 2 are:
 ```
 conda install -c bioconda fastqc
 conda install -c bioconda trimmomatic
+conda install -c bioconda quast
 ```
 ## Pre Trimming Quality assessmnet with FastQC
 The fastQC command used was
@@ -29,9 +30,6 @@ trimmomatic PE input_1.fq.gz input_2.fq.gz output_1.fq output_1_unpaired.fq outp
 cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
 
-```
-conda install -c bioconda quast
-```
 QUAST v5.0.2
 
 ## De Novo Assembly quality assessmnet with QUAST
