@@ -34,5 +34,5 @@ QUAST v5.0.2
 
 ## De Novo Assembly quality assessmnet with QUAST
 ```
-quast.py <example.contigs.fasta> -o /path/to/output/dir
+quast.py <contigs.fasta> -o /path/to/output
 ```
