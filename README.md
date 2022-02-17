@@ -85,8 +85,9 @@ CISA
 ```
 CISA.py cisa.config
 ```
-
-
-
+Evaluate final contig with Quast
+```
+quast.py cisa.config -o /path/to/output
+```
 
 
