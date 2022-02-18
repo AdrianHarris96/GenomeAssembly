@@ -36,7 +36,7 @@ cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ## De Novo Assembly quality assessment with QUAST
 QUAST v5.0.2
 ```
-quast.py <contigs.fasta> -o /path/to/output
+quast.py <spades_contigs.fasta> <megahit_contigs.fasta> <platanus_contigs.fasta> <idba_contigs.fasta> -o /quast/output
 ```
 
 ## Integration of multiple genome assemblies using Contig Integrator for Sequence Assembly(CISA)
@@ -60,10 +60,11 @@ tar xf CISA_20140304-05194132.tar
 
 Create the merge.config configuration file
 ```
-count=3 
-data=assembler1.fasta,title=assembler1
-data=assembler2.fasta,title=assembler2
-data=assembler3.fasta,title=assembler3
+count=4 
+data=spades.fasta,title=spades
+data=platanus.fasta,title=platanus
+data=megahit.fasta,title=megahit
+data=idba.fasta,title=idba
 Master_file=merge_contigs.fa
 min_length=100
 Gap=11
@@ -76,7 +77,7 @@ Create the cisa.config configuration file
 ```
 genome=n (Fill in the largest contigs size in Assemblies)
 infile=merge_contigs.fa
-outfile=cisa.contig.fa
+outfile=final_contig.fa
 nucmer=/tool/path/MUMmer3.23/nucmer
 R2_Gap=0.95 (default:0.95)
 CISA=/tool/path/CISA1.3
