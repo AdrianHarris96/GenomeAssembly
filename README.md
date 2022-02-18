@@ -32,14 +32,16 @@ trimmomatic PE input_1.fq.gz input_2.fq.gz output_1.fq output_1_unpaired.fq outp
 cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
 
-QUAST v5.0.2
 
 ## De Novo Assembly quality assessment with QUAST
+QUAST v5.0.2
 ```
 quast.py <contigs.fasta> -o /path/to/output
 ```
 
 ## Integration of multiple genome assemblies using Contig Integrator for Sequence Assembly(CISA)
+CISA 1.3
+
 CISA official website: http://sb.nhri.org.tw/CISA/en/CISA
 
 CISA basically consists of four major phases:
