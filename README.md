@@ -16,6 +16,15 @@ The Genome Assembly group members for Team 2 are:
 conda install -c bioconda fastqc
 conda install -c bioconda trimmomatic
 conda install -c bioconda quast
+
+## SPAdes Installation
+
+To download SPAdes Linux binaries and extract them, go to the directory in which you wish SPAdes to be installed and run:
+
+    wget http://cab.spbu.ru/files/release3.15.2/SPAdes-3.15.2-Linux.tar.gz
+    tar -xzf SPAdes-3.15.2-Linux.tar.gz
+    cd SPAdes-3.15.2-Linux/bin/
+In this case you do not need to run any installation scripts – SPAdes is ready to use. We also suggest adding SPAdes installation directory to the PATH variable.
 ```
 ## Pre Trimming Quality assessmnet with FastQC
 The fastQC command used was
