@@ -34,15 +34,17 @@ cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 
 
 ## De Novo Assembly quality assessment with QUAST
-QUAST v5.0.2
+Using [QUAST v5.0.2](http://quast.sourceforge.net/install.html) for post-QC evalution and visualization. 
+
+After replacing module ```cgi.escape``` to ```html.escape``` in ``` quast_libs/site_packages/jsontemplate/jsontemplate.py ```.
+
+Run following code and direct to ```report.pdf``` to check the evalution result of the assemblers.
 ```
 quast.py <spades_contigs.fasta> <megahit_contigs.fasta> <platanus_contigs.fasta> <idba_contigs.fasta> -o /quast/output
 ```
 
 ## Integration of multiple genome assemblies using Contig Integrator for Sequence Assembly(CISA)
-CISA 1.3
-
-CISA official website: http://sb.nhri.org.tw/CISA/en/CISA
+Click [CISA 1.3](http://sb.nhri.org.tw/CISA/en/CISA) for more details.
 
 CISA basically consists of four major phases:
 * Identification of the representative contigs and possible extensions
