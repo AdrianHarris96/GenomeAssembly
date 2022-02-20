@@ -56,6 +56,14 @@ quast.py <spades_contigs.fasta> <megahit_contigs.fasta> <platanus_contigs.fasta>
 * iterative merging of the contigs with a minimum 30% overlap and estimating the maximal size of repetitive regions
 * merging of the contigs based on the size of repetitive regions
 
+Prerequisite
+
+* MUMmer 3.22 or higher
+
+* BLAST 2.2.25+ or higher
+
+* python2.X
+
 Installation
 ```
 conda install -c bioconda mummer
