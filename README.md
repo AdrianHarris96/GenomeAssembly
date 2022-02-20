@@ -44,9 +44,7 @@ quast.py <spades_contigs.fasta> <megahit_contigs.fasta> <platanus_contigs.fasta>
 ```
 
 ## Integration of multiple genome assemblies using Contig Integrator for Sequence Assembly(CISA)
-Click [CISA 1.3](http://sb.nhri.org.tw/CISA/en/CISA) for more details.
-
-CISA basically consists of four major phases:
+[CISA v1.3](http://sb.nhri.org.tw/CISA/en/CISA) basically consists of four major phases:
 * Identification of the representative contigs and possible extensions
 * removal and splitting of the contigs that may be misassembled, and clipping of uncertain regions that are located at the extremities of the contigs
 * iterative merging of the contigs with a minimum 30% overlap and estimating the maximal size of repetitive regions
