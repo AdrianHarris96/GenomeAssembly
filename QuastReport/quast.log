@@ -1,0 +1,81 @@
+/home/groupb/bin/tools/quast/quast.py /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/idba.fasta /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/megahit.fasta /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/platanus.fasta /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/spades.fasta -o /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast
+
+Version: 5.0.2
+
+System information:
+  OS: Linux-3.10.0-1160.45.1.el7.x86_64-x86_64-with-redhat-7.9-Maipo (linux_64)
+  Python version: 3.7.0
+  CPUs number: 9
+
+Started: 2022-02-20 14:22:55
+
+Logging to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/quast.log
+NOTICE: Maximum number of threads is set to 2 (use --threads option to set it manually)
+
+CWD: /home/groupb/scripts
+Main parameters: 
+  MODE: default, threads: 2, minimum contig length: 500, minimum alignment length: 65, \
+  ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  1  /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/idba.fasta ==> idba
+  2  /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/megahit.fasta ==> megahit
+  3  /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/platanus.fasta ==> platanus
+  4  /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/spades.fasta ==> spades
+
+2022-02-20 14:23:01
+Running Basic statistics processor...
+  Contig files: 
+    1  idba
+    2  megahit
+    3  platanus
+    4  spades
+  Calculating N50 and L50...
+    1  idba, N50 = 74767, L50 = 20, Total length = 5311883, GC % = 50.25, # N's per 100 kbp =  0.00
+    2  megahit, N50 = 169832, L50 = 11, Total length = 5417403, GC % = 50.27, # N's per 100 kbp =  0.00
+    3  platanus, N50 = 16007, L50 = 105, Total length = 5464862, GC % = 50.27, # N's per 100 kbp =  0.00
+    4  spades, N50 = 226784, L50 = 8, Total length = 5539349, GC % = 50.22, # N's per 100 kbp =  0.00
+  Drawing Nx plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/GC_content_plot.pdf
+  Drawing idba GC content plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/idba_GC_content_plot.pdf
+  Drawing megahit GC content plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/megahit_GC_content_plot.pdf
+  Drawing platanus GC content plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/platanus_GC_content_plot.pdf
+  Drawing spades GC content plot...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/spades_GC_content_plot.pdf
+  Drawing Coverage histogram (bin size: 1x)...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/coverage_histogram.pdf
+  Drawing spades coverage histogram (bin size: 1x)...
+    saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/basic_stats/spades_coverage_histogram.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding or --glimmer option to enable it.
+
+2022-02-20 14:23:04
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2022-02-20 14:23:06
+RESULTS:
+  Text versions of total report are saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) is saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/report.html
+  PDF version (tables and plots) is saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/report.pdf
+  Icarus (contig browser) is saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/icarus.html
+  Log is saved to /home/groupb/analysis/Team2-GenomeAssembly/post_QC/quast/quast.log
+
+Finished: 2022-02-20 14:23:06
+Elapsed time: 0:00:11.033930
+NOTICEs: 2; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
