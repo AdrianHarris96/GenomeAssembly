@@ -16,8 +16,6 @@ The Genome Assembly group members for Team 2 are:
 conda install -c bioconda fastqc
 conda install -c bioconda trimmomatic
 conda install -c bioconda quast
-conda install -c bioconda mummer
-conda install -c bioconda blast
 ```
 ## Pre Trimming Quality assessmnet with FastQC
 The fastQC command used was
