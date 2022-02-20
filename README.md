@@ -33,7 +33,7 @@ cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
 
 
-## De Novo Assembly quality assessment with QUAST
+## De Novo Assembly Quality Assessment with QUAST
 Using [QUAST v5.0.2](http://quast.sourceforge.net/install.html) for post-QC evalution and visualization. 
 
 After replacing module ```cgi.escape``` to ```html.escape``` in ``` quast_libs/site_packages/jsontemplate/jsontemplate.py ```.
