@@ -22,40 +22,44 @@ Fixes in next update:
 11. Add threads option for each assembler - currently running on default
 """
 
+"""
+ToDo:
+1. Move Final contigs to Quast Folder
+2. Confirm FASTQC and Trimmomatic Commands
+"""
+
 import subprocess
 import shlex
 import os
 import sys
 import shutil
+import argparse
 
 POSTQC_DIR = "./PostQCReports/"
 PREQC_DIR = "./PreQCReports/"
+QUAST_DIR = "./QuastReport/"
 # input_dir = "/home/groupb/data/"
 # output_dir = "/home/groupb/output/"
+ERROR_LOG = "errors.txt"
 
-# def clear_tempfiles():
 
-def quast():
-    """
+def run_quast(output_dir):
+    #Move contig files to Quast contig Folder
+    ###
 
-    :return:
-    """
-    """
-        #if [ ! -d quast ];
-    #then
-        #To store output files
-    #   mkdir post_QC/test 
-    #fi
-
-    #main quast command
-    #python /home/groupb/bin/tools/quast/quast.py /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/*.fasta -o /home/groupb/analysis/Team2-GenomeAssembly/post_QC/test
-
-    #echo "Based on the quast report, the ideal assmbly tool is: 'SPADES'."
-    #echo "Please direct to /home/groupb/analysis/Team2-GenomeAssembly/de_novo/spades for the final whole genome output."
-    """
+    global errors
+    try:
+        quast_command = f"quast.py ./contig/*.fasta -o ./test/
+        print(f"Running Quast for all assemblies with command: {quast_command} \n \n")
+        subprocess.call(shlex.split(quast_command))
+    except:
+        errors += "Quast command didnt work"
 
 def run_idba_ud(combined_reads,threads,output_dir):
     global errors
+    idba_ud_path = os.path.join(output_dir, "idba_ud")
+    os.mkdir(idba_ud_path)
+
     try:
         ## Converting fastq to fasta
         # Must be converted from fq to fa
@@ -73,7 +77,7 @@ def run_idba_ud(combined_reads,threads,output_dir):
         # --mink minimum k (<=124)
         # --maxk maximum k (<=124)
 
-        idba_ud_assembly = f"idba_ud -l {combined_reads} -o {output_dir}/idba_ud/" #--num_threads
+        idba_ud_assembly = f"idba_ud -l {combined_reads} -o {idba_ud_path}" #--num_threads
         print(f"Running idba_ud for all isolates together with command: {idba_ud_assembly} \n \n")
         subprocess.call(shlex.split(idba_ud_assembly))
 
@@ -85,8 +89,10 @@ def run_platanus_b(combined_reads,threads,output_dir):
     # Optional -k flag -> minimum k-mer to initialize with (default=32)
     # Optional -K flag -> maximum k-mer
     global errors
+    platanus_b_path =  os.path.join(output_dir, "platanus_b")
+    os.mkdir(platanus_b_path)
     try:
-        platanus_b_assembly = f"platanus_b -f {combined_reads} -o {output_dir}"
+        platanus_b_assembly = f"platanus_b -f {combined_reads} -o {platanus_b_path}"
         print(f"Running idba_ud for all isolates together with command: {platanus_b_assembly} \n \n")
         subprocess.call(shlex.split(platanus_b_assembly))
     except:
@@ -102,9 +108,11 @@ def run_spades(combined_reads,threads,output_dir):
     """
     global errors
     default_k_mer_list = "21,33,55,77"
+    spades_path = os.path.join(output_dir, "spades")
+    os.mkdir(spades_path)
 
     try:
-        spades_assembly = f"spades.py -k {default_k_mer_list} --careful --only-assembler -s {combined_reads} -o {output_dir}/spades/"
+        spades_assembly = f"spades.py -k {default_k_mer_list} --careful --only-assembler -s {combined_reads} -o {spades_path}"
         print(f"Running Spades for all isolates together with command: {spades_assembly} \n \n")
         subprocess.call(shlex.split(spades_assembly))
     except:
@@ -113,14 +121,18 @@ def run_spades(combined_reads,threads,output_dir):
 def run_megahit(forward_reads,backward_reads,threads,output_dir):
     global errors
     default_k_mer_list = "21,29,33,39,55,59,77,79,99,119,125,141"
+    megahit_path = os.path.join(output_dir, "megahit")
+    os.mkdir(megahit_path)
+
     try:
-        megahit_assembly = f"megahit --k-list {default_k_mer_list} -1 {forward_reads} -2 {backward_reads} -o {output_dir}"
+        megahit_assembly = f"megahit --k-list {default_k_mer_list} -1 {forward_reads} -2 {backward_reads} -o {megahit_path}"
         print(f"Running Megahit for all isolates together with command: {megahit_assembly} \n \n")
         subprocess.call(shlex.split(megahit_assembly))
     except:
         errors += "Megahit did not work"
 
 def run_assembly(input_dir, threads, output_dir):
+    global ERROR_LOG
     forward_reads, backward_reads, combined_reads = parse_trimmed_inputs(input_dir)
     errors = ""
 
@@ -129,7 +141,7 @@ def run_assembly(input_dir, threads, output_dir):
     run_idba_ud(combined_reads,threads,output_dir)
     run_platanus_b(combined_reads,threads,output_dir)
 
-    with open("errors.txt", "w+") as file:
+    with open(ERROR_LOG, "w+") as file:
         file.write(errors)
 
 def parse_trimmed_inputs(input_dir):
@@ -146,8 +158,7 @@ def parse_trimmed_inputs(input_dir):
     combined_reads = []
 
     for isolate in os.listdir(input_dir):
-        if "CGT" in directory:
-            untrimmmed_forward_reads.append(f"{input_dir}{isolate}/{isolate}_1.fq")
+        if "CGT" in isolate:
             forward_reads.append(f"{input_dir}{isolate}/{isolate}_1.fq")
             backward_reads.append(f"{input_dir}{isolate}/{isolate}_2.fq")
             combined_reads.append(f"{input_dir}{isolate}/{isolate}.fq")
@@ -173,7 +184,7 @@ def run_trimmomatic(untrimmmed_forward_reads,untrimmmed_backward_reads):
             subprocess.call(shlex.split(trimmomatic_command))
 
         except:
-            print(f"Error with Trimmomatic for {forward_reads[read_no]}")
+            print(f"Error with Trimmomatic for {untrimmmed_forward_reads[read_no]}")
 
         try:
             #Combining the trimmed forward and backward reads
@@ -210,7 +221,7 @@ def perform_qc_trimming(input_dir):
     untrimmmed_forward_reads = []
     untrimmmed_backward_reads = []
     for isolate in os.listdir(input_dir):
-        if "CGT" in directory:
+        if "CGT" in isolate:
             untrimmmed_forward_reads.append(f"{input_dir}{isolate}/{isolate}_1.fq.gz")
             untrimmmed_backward_reads.append(f"{input_dir}{isolate}/{isolate}_2.fq.gz")
 
@@ -227,16 +238,6 @@ def create_output_directories(output_dir):
     ## Creating a new output directory
     os.mkdir(output_dir)
 
-    ## Creating individual directories for each assembler
-    spades_path = os.path.join(output_dir, "spades")
-    os.mkdir(spades_path)
-    megahit_path = os.path.join(output_dir, "megahit")
-    os.mkdir(megahit_path)
-    idba_ud_path = os.path.join(output_dir, "idba_ud")
-    os.mkdir(idba_ud_path)
-    platanus_b_path =  os.path.join(output_dir, "platanus_b")
-    os.mkdir(platanus_b_path)
-
 def sanity_check(input_dir):
     #Checking if Input directory exists
     if os.path.exists(input_dir):
@@ -252,12 +253,12 @@ def main():
     parser.add_argument("-i", "--input", help="Input Directory", required=True, type=str)
     parser.add_argument("-t", "--threads", help="Number of Threads to use", required=False, type=int)
     #k-list -> Odd Numbers only less than 150 greater 21 (Add condition during argparse)
-    parser.add_argument("-k", "--k-mer", nargs='*', action ="append" help="k-mer list", required=False)
+    # parser.add_argument("-k", "--k-mer", nargs='*', action ="append" help="k-mer list", required=False)
     # parse.add_argument("-a")
 
     args = parser.parse_args()
 
-    if args.threads == None or args.threads > 4:
+    if args.threads is None or args.threads > 4:
         threads = 4 #Ensuring not more than 4 threads are used
     else:
         threads = int(args.threads)
@@ -274,8 +275,8 @@ def main():
     ## Running De-Novo Assembly using the trimmed reads
     run_assembly(args.input,threads,args.output)
 
-    with open (args.input, "r") as file_handle:
-        input_file = file_handle.readlines()
+    ## Run QUAST for post assembly QC
+    run_quast(args.output)
 
 if __name__ == "__main__":
     main()
