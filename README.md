@@ -25,6 +25,28 @@ To download SPAdes Linux binaries and extract them, go to the directory in which
     tar -xzf SPAdes-3.15.2-Linux.tar.gz
     cd SPAdes-3.15.2-Linux/bin/
 In this case you do not need to run any installation scripts – SPAdes is ready to use. We also suggest adding SPAdes installation directory to the PATH variable.
+
+## Platanus_B Installation
+
+To download Platanus_B binaries, go to the directory in which you wish to install Platanus_B and run:
+
+    git clone https://github.com/rkajitani/Platanus_B.git
+    cd Platanus_B
+    make
+    cp platanus_b <installation_path>
+
+Platanus_B also requires the installation of OpenMP (to compile the source code), Minimap2 (for the assembly of long reads), and Perl (to execute the scripts).
+Linux 64 bit binary (precompiled) can also be downloaded here: http://platanus.bio.titech.ac.jp/platanus-assembler/platanus-1-2-4
+
+## IDBA_UD Installation 
+
+To download IDBA_UD binaries, go to the directory in which you wish to install IDBA_UD and run:
+
+    git clone https://github.com/loneknightpy/idba.git
+    cd idba
+    ./build.sh
+
+IBDA_UD requires GCC to compile source code. All IDBA executables will be listed under the bin directory in IDBA upon installation. 
 ```
 ## Pre Trimming Quality assessmnet with FastQC
 The fastQC command used was
