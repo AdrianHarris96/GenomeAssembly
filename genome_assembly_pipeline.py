@@ -27,37 +27,17 @@ def quast():
 
     :return:
     """
-    # if [ ! -d quast];
-    # then
-    # mkdir
-    # post_QC / quast
-    #
-    #
-    # fi
-    #
-    # for assembler in $(ls / home / groupb / analysis / Team2-GenomeAssembly / de_novo);  ## assemble output directory
-    # do
-    # echo $assembler
-    # if [ ! -d./ quast / $assembler];  ## set quast output directory
-    # then
-    # mkdir
-    # "./quast/$assembler/"
-    # fi
-    # # example: /home/groupb/analysis/Team2-GenomeAssembly/de_novo/spades/contigs.fasta
-    #
-    #
-    # for read in $(ls / home / groupb / analysis / Team2-GenomeAssembly / de_novo / $assembler / contigs.fasta);
-    # do
-    # if [ ! -d./ quast / $assembler];
-    # then
-    #
-    # mkdir
-    # "./quast/$assembler"
-    # ./ home / groupb / tools / quast / quast.py / home / groupb / analysis / Team2 - GenomeAssembly / de_novo /$assembler / contigs.fasta - o. / quast / de_novo  # input 4 tools' single fasta  output quast
-    #
-    # fi
-    # done
-    # done
+    #if [ ! -d quast ];
+    #then
+        #To store output files
+    #   mkdir post_QC/test 
+    #fi
+
+    #main quast command
+    #python /home/groupb/bin/tools/quast/quast.py /home/groupb/analysis/Team2-GenomeAssembly/post_QC/contig/*.fasta -o /home/groupb/analysis/Team2-GenomeAssembly/post_QC/test
+
+    #echo "Based on the quast report, the ideal assmbly tool is: 'SPADES'."
+    #echo "Please direct to /home/groupb/analysis/Team2-GenomeAssembly/de_novo/spades for the final whole genome output."
 
 def run_idba_ud(combined_reads,threads,output_dir):
     global errors
