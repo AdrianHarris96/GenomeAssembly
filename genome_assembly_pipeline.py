@@ -4,7 +4,7 @@
 Pre-Requisites:
 1. All assembly software are pre-installed and added to the path
 2. Input data files are in zipped fastq format (.fq.gz) and each isolate is present in a separate directory
-3. Current pipeline is designed for paired end reads.
+3. Current pipeline is designed for short paired end illumina reads for micorbial species
 """
 
 """
