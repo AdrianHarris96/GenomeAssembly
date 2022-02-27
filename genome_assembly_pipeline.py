@@ -49,7 +49,7 @@ def run_quast(output_dir):
 
     global errors
     try:
-        quast_command = f"quast.py ./contig/*.fasta -o ./test/
+        quast_command = f"quast.py ./contig/*.fasta -o ./test/"
         print(f"Running Quast for all assemblies with command: {quast_command} \n \n")
         subprocess.call(shlex.split(quast_command))
     except:
