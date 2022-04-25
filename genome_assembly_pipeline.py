@@ -310,7 +310,7 @@ def main():
         threads = int(args.threads)
 
     print("Checking if input directory is provided")
-    if sanity_check(args.input)==0:
+    if sanity_check(args.input)==1:
         sys.exit()
 
     print("Creating output directories")
