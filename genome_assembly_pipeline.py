@@ -44,6 +44,10 @@ ERROR_LOG = "errors.txt"
 
 
 def run_quast(output_dir):
+    """
+    :param output_dir:
+    :return:
+    """
     #Move contig files to Quast contig Folder
     ###
 
@@ -56,6 +60,12 @@ def run_quast(output_dir):
         errors += "Quast command didnt work"
 
 def run_idba_ud(combined_reads,threads,output_dir):
+    """
+    :param combined_reads:
+    :param threads:
+    :param output_dir:
+    :return:
+    """
     global errors
     idba_ud_path = os.path.join(output_dir, "idba_ud")
     os.mkdir(idba_ud_path)
@@ -85,6 +95,12 @@ def run_idba_ud(combined_reads,threads,output_dir):
         errors += "IDBA_UD didnt work"
 
 def run_platanus_b(combined_reads,threads,output_dir):
+    """
+    :param combined_reads:
+    :param threads:
+    :param output_dir:
+    :return:
+    """
     # This should output a out_contig.fa and an assemble.log
     # Optional -k flag -> minimum k-mer to initialize with (default=32)
     # Optional -K flag -> maximum k-mer
@@ -119,6 +135,13 @@ def run_spades(combined_reads,threads,output_dir):
         errors += "Spades didnt work"
 
 def run_megahit(forward_reads,backward_reads,threads,output_dir):
+    """
+    :param forward_reads:
+    :param backward_reads:
+    :param threads:
+    :param output_dir:
+    :return:
+    """
     global errors
     default_k_mer_list = "21,29,33,39,55,59,77,79,99,119,125,141"
     megahit_path = os.path.join(output_dir, "megahit")
@@ -132,14 +155,21 @@ def run_megahit(forward_reads,backward_reads,threads,output_dir):
         errors += "Megahit did not work"
 
 def run_assembly(input_dir, threads, output_dir):
+    """
+
+    :param input_dir:
+    :param threads:
+    :param output_dir:
+    :return:
+    """
     global ERROR_LOG
     forward_reads, backward_reads, combined_reads = parse_trimmed_inputs(input_dir)
     errors = ""
 
-    run_megahit(forward_reads,backward_reads,threads,output_dir)
+    # run_megahit(forward_reads,backward_reads,threads,output_dir)
     run_spades(combined_reads,threads,output_dir)
-    run_idba_ud(combined_reads,threads,output_dir)
-    run_platanus_b(combined_reads,threads,output_dir)
+    # run_idba_ud(combined_reads,threads,output_dir)
+    # run_platanus_b(combined_reads,threads,output_dir)
 
     with open(ERROR_LOG, "w+") as file:
         file.write(errors)
@@ -213,6 +243,10 @@ def run_fastqc(forward_reads, backward_reads, output_dir):
             print(f"Error with FASTQC for {forward_reads[read_no]}")
 
 def perform_qc_trimming(input_dir):
+    """
+    :param input_dir:
+    :return:
+    """
     global PREQC_DIR, POSTQC_DIR
 
     input_dir = input_dir.rstrip("/")
@@ -231,6 +265,11 @@ def perform_qc_trimming(input_dir):
     run_fastqc(forward_reads, backward_reads, POSTQC_DIR)
 
 def create_output_directories(output_dir):
+    """
+
+    :param output_dir:
+    :return:
+    """
     ## Removing Output Directory if it already exists
     if os.path.exists(output_dir) and os.path.isdir(output_dir):
         shutil.rmtree(output_dir)
@@ -239,6 +278,11 @@ def create_output_directories(output_dir):
     os.mkdir(output_dir)
 
 def sanity_check(input_dir):
+    """
+
+    :param input_dir:
+    :return:
+    """
     #Checking if Input directory exists
     if os.path.exists(input_dir):
         exit_code = 0
@@ -255,7 +299,7 @@ def main():
     #k-list -> Odd Numbers only less than 150 greater 21 (Add condition during argparse)
     # parser.add_argument("-k", "--k-mer", nargs='*', action ="append" help="k-mer list", required=False)
     # parse.add_argument("-a")
-
+    print(args.input)
     args = parser.parse_args()
 
     if args.threads is None or args.threads > 4:
