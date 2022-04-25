@@ -28,7 +28,6 @@ Fixes in next update:
 """
 ToDo:
 1. Move Final contigs to Quast Folder
-2. Confirm FASTQC and Trimmomatic Commands
 """
 
 import subprocess
@@ -38,12 +37,12 @@ import sys
 import shutil
 import argparse
 
-POSTQC_DIR = "./PostQCReports/"
-PREQC_DIR = "./PreQCReports/"
-QUAST_DIR = "./QuastReport/"
+POSTQC_DIR = "./temp_PostQCReports/"
+PREQC_DIR = "./temp_PreQCReports/"
+QUAST_DIR = "./temp_QuastReport/"
 # input_dir = "/home/groupb/data/"
 # output_dir = "/home/groupb/output/"
-ERROR_LOG = "errors.txt"
+ERROR_LOG = "./errors.txt"
 
 
 def run_quast(output_dir):
@@ -236,6 +235,7 @@ def run_fastqc(forward_reads, backward_reads, output_dir):
     :param output_dir: output directory for html reports from fastqc
     :return:
     """
+    print(f"QC Inputs -- {forward_reads,backward_reads,output_dir}" )
     for read_no in range(len(forward_reads)):
         try:
             fastqc_command = f"fastqc {forward_reads[read_no]} {backward_reads[read_no]} -o {output_dir}"  # --num_threads
@@ -263,9 +263,9 @@ def perform_qc_trimming(input_dir):
             untrimmmed_backward_reads.append(f"{input_dir}{isolate}/{isolate}_2.fq.gz")
 
     run_fastqc(untrimmmed_forward_reads,untrimmmed_backward_reads,PREQC_DIR)
-    run_trimmomatic(untrimmmed_forward_reads,untrimmmed_backward_reads)
-    forward_reads, backward_reads, combined_reads = parse_trimmed_inputs(input_dir)
-    run_fastqc(forward_reads, backward_reads, POSTQC_DIR)
+    # run_trimmomatic(untrimmmed_forward_reads,untrimmmed_backward_reads)
+    # forward_reads, backward_reads, combined_reads = parse_trimmed_inputs(input_dir)
+    # run_fastqc(forward_reads, backward_reads, POSTQC_DIR)
 
 def create_output_directories(output_dir):
     """
@@ -309,22 +309,23 @@ def main():
     else:
         threads = int(args.threads)
 
-    print("Checking if input directory is provided")
+    print("######### Checking if input directory is provided")
     if sanity_check(args.input)==1:
         sys.exit()
 
-    print("Creating output directories")
+    print("######### Creating output directories")
     ## Create output directories
     create_output_directories(args.output)
 
-    print("Performing Initial QC and Trimming")
+    print("######### Performing Initial QC and Trimming")
     ## Perform Initial QC and Trimming
     perform_qc_trimming(args.input)
 
-    print("Running De-Novo Assembly using the trimmed reads")
+    print("######### Running De-Novo Assembly using the trimmed reads")
     ## Running De-Novo Assembly using the trimmed reads
     run_assembly(args.input,threads,args.output)
 
+    print("######### Running QUAST")
     ## Run QUAST for post assembly QC
     run_quast(args.output)
 
