@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Author: Sreenath Srikrishnan: ssrikrishnan6@gatech.edu
+"""
 
 """
 Pre-Requisites:
@@ -266,7 +269,6 @@ def perform_qc_trimming(input_dir):
 
 def create_output_directories(output_dir):
     """
-
     :param output_dir:
     :return:
     """
@@ -279,7 +281,6 @@ def create_output_directories(output_dir):
 
 def sanity_check(input_dir):
     """
-
     :param input_dir:
     :return:
     """
@@ -299,23 +300,28 @@ def main():
     #k-list -> Odd Numbers only less than 150 greater 21 (Add condition during argparse)
     # parser.add_argument("-k", "--k-mer", nargs='*', action ="append" help="k-mer list", required=False)
     # parse.add_argument("-a")
-    print(args.input)
+
     args = parser.parse_args()
+    print(args.input)
 
     if args.threads is None or args.threads > 4:
         threads = 4 #Ensuring not more than 4 threads are used
     else:
         threads = int(args.threads)
 
+    print("Checking if input directory is provided")
     if sanity_check(args.input)==0:
         sys.exit()
 
+    print("Creating output directories")
     ## Create output directories
     create_output_directories(args.output)
 
+    print("Performing Initial QC and Trimming")
     ## Perform Initial QC and Trimming
     perform_qc_trimming(args.input)
 
+    print("Running De-Novo Assembly using the trimmed reads")
     ## Running De-Novo Assembly using the trimmed reads
     run_assembly(args.input,threads,args.output)
 
