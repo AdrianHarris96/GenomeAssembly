@@ -10,6 +10,8 @@ The Genome Assembly group members for Team 2 are:
 * Howard Page
 * Harini Narasimhan
 
+![Screenshot](final_pipeline.jpg)
+
 ## Installation
 
 ```
