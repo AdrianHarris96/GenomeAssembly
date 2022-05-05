@@ -86,6 +86,13 @@ Trimmomatic <br>
 * De novo assembler for bacterial genomes using an iterative error-removal process <br>
 * Platanus_B’s advantages of contiguities and accuracies for short-read inputs is useful to proceed large-scale projects, which target hundreds of isolates and focus on a few variant sites between genomes. 
 
+## MEGAHIT
+* MEGAHIT makes use of succinct de Bruijn graphs <br>
+
+## IDBA_UD
+*  De Bruijn graph approach <br>
+*  The technique of local assembly with paired-end information is used to solve the branch problem of low-depth short repeat regions
+
 ## Comparison of different tools
 ![Screenshot](tool.jpg)
 
