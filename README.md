@@ -57,6 +57,7 @@ fastqc *_1.fastq  *_2.fastq
 
 ```
 FastQC <br>
+* Used to provide an overview of basic quality control metrics for raw next generation sequencing data.
 * Reason to choose- Easy graphical visualization, Industry standard <br>
 * Criteria- Basic statistics, Per base sequence quality, sequence length distribution
 
@@ -68,9 +69,10 @@ trimmomatic PE input_1.fq.gz input_2.fq.gz output_1.fq output_1_unpaired.fq outp
 cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
 Trimmomatic <br>
+* Trimmomatic is a fast, multithreaded command line tool that can be used to trim and crop Illumina (FASTQ) data as well as to remove adapters. <br>
+* Adapter sequences should be removed from reads because they interfere with downstream analyses, such as alignment of reads to a reference. The adapters contain the sequencing primer binding sites, the index sequences, and the sites that allow library fragments to attach to the flow cell lawn. <br>
 * Reason to choose- Fast, Works well with paired end reads <br>
-* Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length​
-
+* Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length <br>
 
 
 ## De Novo Assembly Quality Assessment with QUAST
