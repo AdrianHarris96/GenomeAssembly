@@ -65,6 +65,9 @@ cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 
 
 ## De Novo Assembly Quality Assessment with QUAST
+![plot](./QuastReport/example_quast_report.jpg)
+###### (Above is an example of QUAST visualization)
+
 QUAST is a common tool for evaluating the quality of genome assembly. It can calculate basic contig information such as N50 (without reference), and can also calculate fraction, duplication, misassembly, unaligned, mismatch and other information by aligning the reference genome (reference-based).
 
 We are using [QUAST v5.0.2](http://quast.sourceforge.net/install.html) for post-QC evalution and visualization. 
