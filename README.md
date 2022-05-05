@@ -60,10 +60,7 @@ FastQC <br>
 * Used to provide an overview of basic quality control metrics for raw next generation sequencing data.
 * Reason to choose- Easy graphical visualization, Industry standard <br>
 * Criteria- Basic statistics, Per base sequence quality, sequence length distribution
-
-![Screenshot](fastqc.jpg)
-###### (Above is an example of FastQC visualization)
-
+ 
 ## Trimming
 Trimming was done using trimmomatic. The following command was used
 ```
@@ -82,6 +79,13 @@ Trimmomatic <br>
 * It uses k-mers only for building the initial de Bruijn graph <br>
 * SPAdes outputs contigs and allows to map reads back to their positions in the assembly graph after graph simplification
 
+## Platanus_B
+* Platanus_B was designed to improve assemblies by introducing more steps than there are in Platanus and Platanus-allee <br>
+* De novo assembler for bacterial genomes using an iterative error-removal process <br>
+* Platanus_B’s advantages of contiguities and accuracies for short-read inputs is useful to proceed large-scale projects, which target hundreds of isolates and focus on a few variant sites between genomes. 
+
+## Comparison of different tools
+![Screenshot](tool.jpg)
 
 ## De Novo Assembly Quality Assessment with QUAST
 ![plot](./QuastReport/example_quast_report.jpg)
