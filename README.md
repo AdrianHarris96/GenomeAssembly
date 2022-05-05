@@ -74,6 +74,11 @@ Trimmomatic <br>
 * Reason to choose- Fast, Works well with paired end reads <br>
 * Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length <br>
 
+## SPADES
+* SPAdes is a universal A-Bruijn assembler <br>
+* It uses k-mers only for building the initial de Bruijn graph <br>
+* SPAdes outputs contigs and allows to map reads back to their positions in the assembly graph after graph simplification
+
 
 ## De Novo Assembly Quality Assessment with QUAST
 ![plot](./QuastReport/example_quast_report.jpg)
