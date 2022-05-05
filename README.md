@@ -69,7 +69,7 @@ trimmomatic PE input_1.fq.gz input_2.fq.gz output_1.fq output_1_unpaired.fq outp
 cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
 Trimmomatic
-Reason to choose- Fast, Works well with paired end reads​
+Reason to choose- Fast, Works well with paired end reads <br>
 Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length​
 
 
