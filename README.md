@@ -56,10 +56,9 @@ The fastQC command used was
 fastqc *_1.fastq  *_2.fastq
 
 ```
-FastQC
-
-Reason to choose- Easy graphical visualization, Industry standard <br>
-Criteria- Basic statistics, Per base sequence quality, sequence length distribution
+FastQC <br>
+* Reason to choose- Easy graphical visualization, Industry standard <br>
+* Criteria- Basic statistics, Per base sequence quality, sequence length distribution
 
 ## Trimming
 Trimming was done using trimmomatic. The following command was used
@@ -68,9 +67,9 @@ trimmomatic PE input_1.fq.gz input_2.fq.gz output_1.fq output_1_unpaired.fq outp
 
 cat output_1_unpaired.fq output_2_unpaired.fq > merged_output.fq
 ```
-Trimmomatic
-Reason to choose- Fast, Works well with paired end reads <br>
-Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length​
+Trimmomatic <br>
+* Reason to choose- Fast, Works well with paired end reads <br>
+* Criteria- Trimming the ends, maintaining an average quality score, maintaining a minimum read length​
 
 
 
