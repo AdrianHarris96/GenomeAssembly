@@ -61,6 +61,9 @@ FastQC <br>
 * Reason to choose- Easy graphical visualization, Industry standard <br>
 * Criteria- Basic statistics, Per base sequence quality, sequence length distribution
 
+![Screenshot](fastqc.jpg)
+###### (Above is an example of FastQC visualization)
+
 ## Trimming
 Trimming was done using trimmomatic. The following command was used
 ```
