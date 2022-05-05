@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#./platanus.sh -p /home/groupb/bin/tools/ -d /home/groupb/data -o /home/groupb/platanus_output/
+#Example input: ./platanus.sh -p /home/groupb/bin/tools/ -d /home/groupb/data -o /home/groupb/platanus_output
 
 function HELP {
 	echo "The Platanus_B shell script requires flags, -p, -d, and -o for the path to the platanus executable, path to the data (fasta files), and the desired output directory, respectively."
@@ -27,9 +27,17 @@ while getopts "p:d:o:t:k:K:v" option; do
 	esac
 done
 
+#Setting Up Timer
 let start_time="$(date +%s)"
 echo "$platanus_dir is the platanus directory"
 echo "$data_dir is the data directory"
+
+#Directory Check
+if [ ! -d $output ]
+then
+    echo "Output directory not found. Creating directory."
+	mkdir $output
+fi
 
 #Append files from file directory to file list
 file_list=()
@@ -37,18 +45,23 @@ for FILE in $data_dir/*;
 do 
 	extension="${FILE##*/}"
 	if [[ $extension == *"CGT"* ]]; then
-		file_list+="$FILE/$extension.fa "
+		file_list+=("$FILE/$extension.fa")
+		cd $output #Move to output
+		mkdir $extension #Make a file for each isolate
 	fi
 done
 
+cd $platanus_dir #Moving to tool's directory
 
-reads="${file_list[@]}"
-reads=${reads::-1} #Removal of last space
-#echo $reads
-cd $platanus_dir
+#Loop through each path for ".fa" files
+for READ in ${file_list[@]};
+do
+	echo "Running Platanus_B for $READ"
+	#echo "${READ:(-10):(-3)}"
+	file_output="$output/${READ:(-10):(-3)}"
+	./platanus_b assemble -f $READ -t $threads -k $mink -K $maxk -o $file_output 2>log
+done
 
-echo "Running Platanus_B"
-./platanus_b assemble -f $reads -t $threads -k $mink -K $maxk -o $output 2>log
 #Assemble with list of reads and output both out_contig.fa and log
 let current_time="$(date +%s)"
 let seconds=$current_time-$start_time
